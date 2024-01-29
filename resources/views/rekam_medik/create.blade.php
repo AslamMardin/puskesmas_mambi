@@ -29,7 +29,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="pasien" readonly ">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPasien">Tambah</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPasien">Pasien</button>
                         </div>
                     </div>
                     @error('pasien_id')
