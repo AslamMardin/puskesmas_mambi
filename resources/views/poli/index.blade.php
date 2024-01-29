@@ -23,6 +23,7 @@
           <tr>
             <th>#</th>
             <th>Nama Poli</th>
+            <th>Dokter</th>
           
             <th>#</th>
            
@@ -33,6 +34,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->nama_poli }}</td>
+                <td>{{ $item->dokter }}</td>
                
                 <td>
                     <a href="{{ route('poli.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>

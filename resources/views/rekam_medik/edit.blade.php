@@ -25,20 +25,6 @@
     <input type="hidden" class="form-control" id="pasien_id" name="pasien_id" value="{{old('keterangan', $rekamMedik->pasien->id)}}" readonly>
     <input type="hidden" class="form-control" id="umur" name="umur" value="{{old('keterangan', $rekamMedik->pasien->umur)}}" readonly>
 
-    <div class="form-group">
-        <label for="dokter_id">Dokter:</label>
-        <select class="form-control" id="dokter_id" name="dokter_id">
-            <option value="" disabled selected>Pilih Dokter</option>
-            @foreach($dokters as $dokter)
-                <option value="{{ $dokter->id }}" {{ $dokter->id == $rekamMedik->dokter_id ? 'selected' : '' }}>
-                    {{ $dokter->nama_dokter }}
-                </option>
-            @endforeach
-        </select>
-        @error('dokter_id')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
 
     <div class="form-group">
         <label for="poli_id">Poli:</label>

@@ -22,11 +22,12 @@ class PoliController extends Controller
     {
         $request->validate([
             'nama_poli' => 'required',
+            'dokter' => 'required',
         ], [
-        'required' => 'Kolom :attribute wajib diisi.',
-        'numeric' => 'Kolom :attribute harus berupa angka.',
-        'date' => 'Kolom :attribute harus berupa tanggal.',
-    ]);
+            'required' => 'Kolom :attribute wajib diisi.',
+            'numeric' => 'Kolom :attribute harus berupa angka.',
+            'date' => 'Kolom :attribute harus berupa tanggal.',
+        ]);
 
         Poli::create($request->all());
 
@@ -47,6 +48,7 @@ class PoliController extends Controller
     {
         $request->validate([
             'nama_poli' => 'required',
+            'dokter' => 'required',
         ], [
             'required' => 'Kolom :attribute wajib diisi.',
             'numeric' => 'Kolom :attribute harus berupa angka.',

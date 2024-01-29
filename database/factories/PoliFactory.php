@@ -17,8 +17,10 @@ class PoliFactory extends Factory
     public function definition(): array
     {
         $polies = ['umum', 'gigi', 'KIA'];
+        $dokters = ['aslam', 'surya', 'harisman'];
         return [
             'nama_poli' => $this->faker->unique()->randomElement($polies),
+            'dokter' => $this->faker->unique()->randomElement($dokters),
         ];
     }
 }

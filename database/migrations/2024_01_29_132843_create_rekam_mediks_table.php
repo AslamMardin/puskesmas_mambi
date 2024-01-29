@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('rekam_mediks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pasien_id')->constrained();
-            $table->foreignId('dokter_id')->constrained();
             $table->foreignId('poli_id')->constrained();
             $table->foreignId('penyakit_id')->constrained();
             $table->integer('umur');

@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Poli;
-use App\Models\Dokter;
 use App\Models\Pasien;
 use App\Models\Penyakit;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Poli;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class RekamMedik extends Model
 {
@@ -18,11 +17,6 @@ class RekamMedik extends Model
     public function pasien()
     {
         return $this->belongsTo(Pasien::class);
-    }
-
-    public function dokter()
-    {
-        return $this->belongsTo(Dokter::class);
     }
 
     public function poli()

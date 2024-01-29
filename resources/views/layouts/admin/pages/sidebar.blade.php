@@ -11,7 +11,7 @@
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown"><i class="bi bi-clipboard2-pulse-fill"></i><span>Laporan</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="index-0.html">Penyakit Terbanyak</a></li>
+            <li><a class="nav-link" href="{{route('admin.index')}}">Penyakit Terbanyak</a></li>
             {{-- <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li> --}}
           </ul>
         </li>
@@ -20,7 +20,7 @@
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="bi bi-file-earmark-fill"></i> <span>Data</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{route('pasien.index')}}">Pasien</a></li>
-            <li><a class="nav-link" href="{{route('dokter.index')}}">Dokter</a></li>
+            {{-- <li><a class="nav-link" href="{{route('dokter.index')}}">Dokter</a></li> --}}
             <li><a class="nav-link" href="{{route('poli.index')}}"><span>Poli</span></a></li>
             <li><a class="nav-link" href="{{route('penyakit.index')}}"><span>Penyakit</span></a></li>
           </ul>

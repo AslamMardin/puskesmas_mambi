@@ -41,19 +41,6 @@
                 <input type="hidden" class="form-control" id="umur" name="umur" >
 
                 <div class="form-group">
-                    <label for="dokter_id">Dokter:</label>
-                    <select class="form-control" id="dokter_id" name="dokter_id">
-                        <option value="" disabled selected>Pilih Dokter</option>
-                        @foreach($dokters as $dokter)
-                            <option value="{{ $dokter->id }}">{{ $dokter->nama_dokter }}</option>
-                        @endforeach
-                    </select>
-                    @error('dokter_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
                     <label for="poli_id">Poli:</label>
                     <select class="form-control" id="poli_id" name="poli_id" >
                         <option value="" disabled selected>Pilih Poli</option>

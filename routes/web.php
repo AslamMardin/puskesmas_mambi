@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\PoliController;
@@ -28,13 +27,13 @@ Route::redirect('/', '/login');
 
 Route::get('/login', [AuthController::class, 'login']);
 
-Route::get('/admin', [DashboardController::class, 'dashboard']);
+Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admin.index');
 
 //pasien
 Route::resource('pasien', PasienController::class);
 
 //dokter
-Route::resource('dokter', DokterController::class);
+// Route::resource('dokter', DokterController::class);
 
 //poli
 Route::resource('poli', PoliController::class);

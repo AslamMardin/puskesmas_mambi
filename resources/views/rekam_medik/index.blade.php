@@ -24,6 +24,7 @@
                 <tr>
                     <th>Tanggal</th>
                     <th>Pasien</th>
+                    <th>JK</th>
                     <th>Penyakit</th>
                     <th width="150">Catatan</th>
                     <th>Poli</th>
@@ -36,10 +37,11 @@
                     <tr>
                         <td>{{ $rekamMedik->tanggal_pemeriksaan }}</td>
                         <td>{{ $rekamMedik->pasien->nama }}</td>
+                        <td>{{ $rekamMedik->pasien->jk }}</td>
                         <td>{{ $rekamMedik->penyakit->nama_penyakit }}</td>
                         <td>{{ $rekamMedik->keterangan }}</td>
                         <td>{{ $rekamMedik->poli->nama_poli }}</td>
-                        <td>{{ $rekamMedik->dokter->nama_dokter }}</td>
+                        <td>{{ $rekamMedik->poli->dokter }}</td>
                         <td>
                             <a href="{{ route('rekam-medik.edit', $rekamMedik->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                             <form id="form-delete-{{ $rekamMedik->id }}" action="{{ route('rekam-medik.destroy', $rekamMedik->id) }}" method="POST" style="display:inline">

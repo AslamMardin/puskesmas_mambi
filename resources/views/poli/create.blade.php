@@ -16,6 +16,14 @@
         @enderror
     </div>
 
+    <div class="form-group">
+        <label for="dokter">Dokter:</label>
+        <input type="text" name="dokter" class="form-control @error('dokter') is-invalid @enderror" value="{{ old('dokter') }}">
+        @error('dokter')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
     <button type="submit" class="btn btn-primary">Simpan</button>
 </form>
 @endsection

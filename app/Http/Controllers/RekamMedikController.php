@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokter;
 use App\Models\Pasien;
 use App\Models\Penyakit;
 use App\Models\Poli;
@@ -32,25 +31,23 @@ class RekamMedikController extends Controller
     }
     public function index()
     {
-        $rekamMediks = RekamMedik::with(['dokter', 'penyakit', 'pasien'])->get();
+        $rekamMediks = RekamMedik::with(['penyakit', 'pasien'])->get();
         return view('rekam_medik.index', compact('rekamMediks'));
     }
 
     public function create()
     {
         $pasiens = Pasien::all();
-        $dokters = Dokter::all();
 
         $polis = Poli::all();
 
-        return view('rekam_medik.create', compact('pasiens', 'dokters', 'polis'));
+        return view('rekam_medik.create', compact('pasiens', 'polis'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'pasien_id' => 'required',
-            'dokter_id' => 'required',
             'poli_id' => 'required',
             'penyakit_id' => 'required',
             'keterangan' => 'required',
@@ -73,11 +70,10 @@ class RekamMedikController extends Controller
     public function edit(RekamMedik $rekamMedik)
     {
         $pasiens = Pasien::all();
-        $dokters = Dokter::all();
 
         $polis = Poli::all();
         $penyakits = Penyakit::all();
-        return view('rekam_medik.edit', compact('rekamMedik', 'pasiens', 'dokters', 'polis', 'penyakits'));
+        return view('rekam_medik.edit', compact('rekamMedik', 'pasiens', 'polis', 'penyakits'));
     }
 
     public function update(Request $request, RekamMedik $rekamMedik)
@@ -89,7 +85,6 @@ class RekamMedikController extends Controller
 
         $rekamMedik->update([
             'pasien_id' => $request->get('pasien_id'),
-            'dokter_id' => $request->get('dokter_id'),
             'poli_id' => $request->get('poli_id'),
             'penyakit_id' => $request->get('penyakit_id'),
             'keterangan' => $request->get('keterangan'),
