@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,5 +18,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Dokter::factory(10)->create();
         // \App\Models\Penyakit::factory(20)->create();
         // \App\Models\RekamMedik::factory(50)->create();
+
+        $currentMonth = now()->format('m'); // Format 'm' memberikan dua digit bulan
+        DB::table('settings')->insert(['currentMonth' => $currentMonth]);
     }
 }

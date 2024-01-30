@@ -5,97 +5,102 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-lg-5 col-md-5 col-sm-12">
       <div class="card card-statistic-2">
         <div class="card-stats">
           <div class="card-stats-title">Puskesmas 
-            <div class="dropdown d-inline">
-              <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#" id="orders-month">August</a>
-              <ul class="dropdown-menu dropdown-menu-sm">
-                <li class="dropdown-title">Select Month</li>
-                <li><a href="#" class="dropdown-item">January</a></li>
-                <li><a href="#" class="dropdown-item">February</a></li>
-                <li><a href="#" class="dropdown-item">March</a></li>
-                <li><a href="#" class="dropdown-item">April</a></li>
-                <li><a href="#" class="dropdown-item">May</a></li>
-                <li><a href="#" class="dropdown-item">June</a></li>
-                <li><a href="#" class="dropdown-item">July</a></li>
-                <li><a href="#" class="dropdown-item active">August</a></li>
-                <li><a href="#" class="dropdown-item">September</a></li>
-                <li><a href="#" class="dropdown-item">October</a></li>
-                <li><a href="#" class="dropdown-item">November</a></li>
-                <li><a href="#" class="dropdown-item">December</a></li>
-              </ul>
-            </div>
+          
           </div>
           <div class="card-stats-items">
+           
             <div class="card-stats-item">
-              <div class="card-stats-item-count">24</div>
-              <div class="card-stats-item-label">Dokter</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">12</div>
+              <div class="card-stats-item-count">{{$data['jumlahPoli']}}</div>
               <div class="card-stats-item-label">Poli</div>
             </div>
+             <div class="card-stats-item">
+              <div class="card-stats-item-count">{{{$data['jumlahPasien']}}}</div>
+              <div class="card-stats-item-label">Member</div>
+            </div>
             <div class="card-stats-item">
-              <div class="card-stats-item-count">23</div>
+              <div class="card-stats-item-count">{{$data['jumlahPasien']}}</div>
               <div class="card-stats-item-label">Penyakit</div>
             </div>
           </div>
         </div>
         <div class="card-icon shadow-primary bg-primary">
-          <i class="fas fa-archive"></i>
+          <i class="bi fas bi-person-raised-hand"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
             <h4>Pasien</h4>
           </div>
           <div class="card-body">
-            59
+            {{$data['rekamMedik']}}
           </div>
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-header">
+            <h4>Penyakit Terbanyak</h4>
+        </div>
+        <div class="card-body">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <table class="table" id="table-rekam-medik">
+                <thead>
+                <tr>
+                    <th>Penyakit</th>
+                   
+                    <th>Pengidap</th>
+                    <th>Aksi</th>
+                </tr>
+               
+                </thead>
+                <tbody>
+                    @php
+                        $daftarPenyakit = [];
+                        $daftarPengidap = [];
+                    @endphp
+                    @foreach($uniquePenyakit as $rekamMedik)
+                    @php
+                        array_push($daftarPenyakit, $rekamMedik->penyakit->nama_penyakit);
+                        array_push($daftarPengidap, $jumlahPasienPerPenyakit[$rekamMedik->penyakit->nama_penyakit]);
+                    @endphp
+                    <tr>
+                        <td>{{$rekamMedik->penyakit->nama_penyakit}}</td>
+                        <td>{{ $jumlahPasienPerPenyakit[$rekamMedik->penyakit->nama_penyakit] }}</td>
+                        <td>
+                            <a href="{{url('/penyakit/show/'. $rekamMedik->penyakit->nama_penyakit)}}" class="btn btn-success">Lihat</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
     </div>
     
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <h4>Penyakit Terbanyak</h4>
-            </div>
-            <div class="card-body">
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <table class="table" id="table-rekam-medik">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Penyakit</th>
-                       
-                        <th>Pengidap</th>
-                        <th>Aksi</th>
-                    </tr>
-                   
-                    </thead>
-                    <tbody>
-                      
-                        @foreach($uniquePenyakit as $rekamMedik)
-                   
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$rekamMedik->penyakit->nama_penyakit}}</td>
-                            <td>{{ $jumlahPasienPerPenyakit[$rekamMedik->penyakit->nama_penyakit] }}</td>
-                            <td>
-                                <a href="{{url('/penyakit/show/'. $rekamMedik->penyakit->nama_penyakit)}}" class="btn btn-success">Lihat</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+    <div class="col-lg-7 col-md-7 col-sm-12">
+      {{-- cart --}}
+      <div class="card">
+        <div class="card-header">
+          <h4>{{$tanggalSekarang}}</h4>
+          <div class="card-header-action">
+           
+          </div>
         </div>
+        <div class="card-body">
+          <canvas id="myChart" height="182"></canvas>
+        
+        </div>
+      </div>
+
+      {{-- // --}}
+    
     </div>
   </div>
 
@@ -103,3 +108,51 @@
 
   
 @endsection
+
+@push('scripts')
+    <script>
+      "use strict";
+
+var statistics_chart = document.getElementById("myChart").getContext('2d');
+
+var myChart = new Chart(statistics_chart, {
+  type: 'line',
+  data: {
+    labels:  @json($daftarPenyakit) ,
+    datasets: [{
+      label: 'Statistics',
+      data: @json($daftarPengidap),
+      borderWidth: 5,
+      borderColor: '#6777ef',
+      backgroundColor: 'transparent',
+      pointBackgroundColor: '#fff',
+      pointBorderColor: '#6777ef',
+      pointRadius: 4
+    }]
+  },
+  options: {
+    legend: {
+      display: false
+    },
+    scales: {
+      yAxes: [{
+        gridLines: {
+          display: false,
+          drawBorder: false,
+        },
+        ticks: {
+          stepSize: 100
+        }
+      }],
+      xAxes: [{
+        gridLines: {
+          color: '#fbfbfb',
+          lineWidth: 2
+        }
+      }]
+    },
+  }
+});
+
+    </script>
+@endpush

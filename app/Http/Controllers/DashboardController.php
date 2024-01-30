@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasien;
+use App\Models\Penyakit;
+use App\Models\Poli;
 use App\Models\RekamMedik;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -15,6 +18,16 @@ class DashboardController extends Controller
     {
 
         $rekamMediks = RekamMedik::with(['pasien', 'poli', 'penyakit'])->get();
+        $jumlahPasien = Pasien::count();
+        $jumlahPoli = Poli::count();
+        $jumlahPenyakit = Penyakit::count();
+
+        $data = [
+            'rekamMedik' => $rekamMediks->count(),
+            'jumlahPasien' => $jumlahPasien,
+            'jumlahPoli' => $jumlahPoli,
+            'jumlahPenyakit' => $jumlahPenyakit,
+        ];
 
         // Menyaring data agar nama penyakit tidak berulang
         $uniquePenyakit = $rekamMediks->unique('penyakit.nama_penyakit');
@@ -30,32 +43,11 @@ class DashboardController extends Controller
             $jumlahPasienPerPenyakit[$penyakit] = $jumlahPasien;
         }
 
-        // Menghitung jumlah pasien untuk setiap jenis kelamin
-        $jumlahPasienPerJenisKelamin = [];
-        foreach ($uniquePenyakit as $rekamMedik) {
-            $jenisKelamin = $rekamMedik->pasien->jk;
-            $jumlahPasien = RekamMedik::whereHas('pasien', function ($query) use ($jenisKelamin) {
-                $query->where('jk', $jenisKelamin);
-            })->count();
+        // Set lokal ke bahasa Indonesia
+        Carbon::setLocale('id');
 
-            $jumlahPasienPerJenisKelamin[$jenisKelamin] = $jumlahPasien;
-        }
-
-        $jumlahLakiLaki = RekamMedik::whereHas('pasien', function ($query) {
-            $query->where('jk', 'Laki-laki');
-        })->select('penyakit_id', DB::raw('COUNT(*) as total'))
-            ->groupBy('penyakit_id')
-            ->get();
-
-        // Output jumlah penderita laki-laki per penyakit
-
-        // Dalam metode controller Anda
-        $jumlahPerempuan = RekamMedik::whereHas('pasien', function ($query) {
-            $query->where('jk', 'Perempuan');
-        })->select('penyakit_id', DB::raw('COUNT(*) as total'))
-            ->groupBy('penyakit_id')
-            ->get();
-
-        return view('admin.dashboard', compact('uniquePenyakit', 'jumlahPasienPerPenyakit', 'jumlahPasienPerJenisKelamin', 'jumlahLakiLaki', 'jumlahPerempuan'));
+        // Format tanggal dengan hari, tanggal, bulan, dan tahun dalam bahasa Indonesia
+        $tanggalSekarang = Carbon::now()->isoFormat('dddd, DD MMMM YYYY');
+        return view('admin.dashboard', compact('data', 'uniquePenyakit', 'jumlahPasienPerPenyakit', 'tanggalSekarang'));
     }
 }

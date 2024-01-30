@@ -11,12 +11,12 @@
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown"><i class="bi bi-clipboard2-pulse-fill"></i><span>Laporan</span></a>
           <ul class="dropdown-menu">
+            <li><a class="nav-link" href="{{route('admin.welcome')}}">Beranda</a></li>
             <li><a class="nav-link" href="{{route('admin.index')}}">Penyakit Terbanyak</a></li>
-            {{-- <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li> --}}
           </ul>
         </li>
         <li class="menu-header">Rekap</li>
-        <li class="dropdown">
+        <li class="dropdown active">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="bi bi-file-earmark-fill"></i> <span>Data</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{route('pasien.index')}}">Pasien</a></li>
@@ -25,8 +25,8 @@
             <li><a class="nav-link" href="{{route('penyakit.index')}}"><span>Penyakit</span></a></li>
           </ul>
         </li>
-        <li><a class="nav-link" href="{{route('rekam-medik.index')}}"><i class="bi bi-capsule"></i><span>Medis</span></a></li>
-        <li class="menu-header">Pengaturan</li>
+        <li><a class="nav-link" href="{{route('rekam-medik.index')}}"><i class="bi bi-clipboard-pulse"></i><span>Medis</span></a></li>
+        {{-- <li class="menu-header">Pengaturan</li>
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown"><i class="bi bi-person-fill-gear"></i> <span>Profil</span></a>
           <ul class="dropdown-menu">
@@ -34,7 +34,7 @@
             <li><a class="nav-link" href="bootstrap-badge.html">Ubah Sandi</a></li>
             
           </ul>
-        </li>
+        </li> --}}
         
       </ul>
 
