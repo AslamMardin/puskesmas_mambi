@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    public function welcome()
+    {
+        return view('admin.welcome');
+    }
     public function dashboard()
     {
 

@@ -4,10 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Models\Penyakit;
 use App\Models\Poli;
+use App\Models\RekamMedik;
 use Illuminate\Http\Request;
 
 class PenyakitController extends Controller
 {
+    public function getViewPenyakit($penyakit)
+    {
+
+        $rekamMedik = RekamMedik::whereHas('penyakit', function ($query) use ($penyakit) {
+            $query->where('nama_penyakit', $penyakit);
+        })->with('pasien')->get();
+        $title = 'Penyakit ' . $penyakit;
+
+        $lk = [];
+        $pr = [];
+        $umurPasien = [];
+        foreach ($rekamMedik as $key => $item) {
+            # code...
+            if ($item->pasien->jk == "Laki-laki") {
+                array_push($lk, $item->pasien->umur);
+            }
+
+            if ($item->pasien->jk == "Perempuan") {
+                array_push($pr, $item->pasien->umur);
+            }
+
+            array_push($umurPasien, $item->pasien->umur);
+
+        };
+
+        $result = [
+            'umur_minimum' => min($umurPasien),
+            'umur_maksimum' => max($umurPasien),
+            'jumlahLaki' => count($lk),
+            'jumlahPerempuan' => count($pr),
+        ];
+        return view('rekam_medik.show', compact('title', 'rekamMedik', 'result'));
+    }
     public function index()
     {
         $penyakits = Penyakit::all();

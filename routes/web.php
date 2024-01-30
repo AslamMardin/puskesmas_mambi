@@ -28,6 +28,7 @@ Route::redirect('/', '/login');
 Route::get('/login', [AuthController::class, 'login']);
 
 Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admin.index');
+Route::get('/admin/welcome', [DashboardController::class, 'welcome'])->name('admin.welcome');
 
 //pasien
 Route::resource('pasien', PasienController::class);
@@ -38,6 +39,7 @@ Route::resource('pasien', PasienController::class);
 //poli
 Route::resource('poli', PoliController::class);
 //penyakit
+Route::get('/penyakit/show/{penyakit}', [PenyakitController::class, 'getViewPenyakit']);
 Route::resource('penyakit', PenyakitController::class);
 
 Route::resource('rekam-medik', RekamMedikController::class);
