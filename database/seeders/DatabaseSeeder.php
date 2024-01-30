@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(UsersTableSeeder::class);
-        \App\Models\Pasien::factory(5)->create();
-        \App\Models\Poli::factory(3)->create();
+        // \App\Models\Pasien::factory(5)->create();
+        // \App\Models\Poli::factory(3)->create();
         // \App\Models\Dokter::factory(10)->create();
         // \App\Models\Penyakit::factory(20)->create();
         // \App\Models\RekamMedik::factory(50)->create();
