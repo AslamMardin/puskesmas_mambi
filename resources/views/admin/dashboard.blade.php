@@ -19,7 +19,7 @@
             </div>
              <div class="card-stats-item">
               <div class="card-stats-item-count">{{{$data['jumlahPasien']}}}</div>
-              <div class="card-stats-item-label">Member</div>
+              <div class="card-stats-item-label">Pasien</div>
             </div>
             <div class="card-stats-item">
               <div class="card-stats-item-count">{{$data['jumlahPasien']}}</div>
@@ -32,7 +32,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Pasien</h4>
+            <h4>Kunjungan</h4>
           </div>
           <div class="card-body">
             {{$data['rekamMedik']}}

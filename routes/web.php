@@ -25,27 +25,36 @@ Route::get('/', function () {
 
 Route::redirect('/', '/login');
 
-Route::get('/login', [AuthController::class, 'login']);
+// Rute login
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admin.index');
-Route::get('/admin/welcome', [DashboardController::class, 'welcome'])->name('admin.welcome');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/actionlogout', [AuthController::class, 'actionlogout'])->name('actionlogout');
+    // Rute yang perlu autentikasi
 
-//pasien
-Route::resource('pasien', PasienController::class);
+    Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admin.index');
+    Route::get('/admin/welcome', [DashboardController::class, 'welcome'])->name('admin.welcome');
+    Route::get('/admin/laporan', [DashboardController::class, 'laporan'])->name('admin.laporan');
+    Route::get('/filter-bulan', [DashboardController::class, 'filterBulan']);
+    //pasien
+    Route::resource('pasien', PasienController::class);
 
-//dokter
-// Route::resource('dokter', DokterController::class);
+    //dokter
+    // Route::resource('dokter', DokterController::class);
 
 //poli
-Route::resource('poli', PoliController::class);
+    Route::resource('poli', PoliController::class);
 //penyakit
-Route::get('/penyakit/show/{penyakit}', [PenyakitController::class, 'getViewPenyakit']);
-Route::resource('penyakit', PenyakitController::class);
+    Route::get('/penyakit/show/{penyakit}', [PenyakitController::class, 'getViewPenyakit']);
+    Route::resource('penyakit', PenyakitController::class);
 
-Route::resource('rekam-medik', RekamMedikController::class);
+    Route::resource('rekam-medik', RekamMedikController::class);
 
 // routes/web.php
-Route::get('/get-penyakit/{poliId}', [RekamMedikController::class, 'getPenyakit']);
+    Route::get('/get-penyakit/{poliId}', [RekamMedikController::class, 'getPenyakit']);
 
-Route::get('/get-daftar-pasien', [RekamMedikController::class, 'getDaftarPasien']);
-Route::get('/cari-pasien', [RekamMedikController::class, 'cariPasien']);
+    Route::get('/get-daftar-pasien', [RekamMedikController::class, 'getDaftarPasien']);
+    Route::get('/cari-pasien', [RekamMedikController::class, 'cariPasien']);
+
+});

@@ -13,6 +13,7 @@
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{route('admin.welcome')}}">Beranda</a></li>
             <li><a class="nav-link" href="{{route('admin.index')}}">Penyakit Terbanyak</a></li>
+            <li><a class="nav-link" href="{{route('admin.laporan')}}">Laporan Perbulan</a></li>
           </ul>
         </li>
         <li class="menu-header">Rekap</li>
