@@ -24,7 +24,7 @@ class PasienController extends Controller
             'nama' => 'required',
             'jk' => 'required',
             'ttl' => 'required',
-            'no_hp' => 'required|numeric',
+            'no_hp' => 'required',
             'alamat' => 'required',
         ], [
             'required' => 'Kolom :attribute wajib diisi.',
