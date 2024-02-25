@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('penyakits', function (Blueprint $table) {
             $table->id();
-            
-            $table->foreignId('poli_id')->constrained();
+
+            // $table->foreignId('poli_id')->constrained();
+            $table->bigInteger('poli_id')->unsigned();
+            $table->foreign('poli_id')->references('id')->on('polis')->onDelete('cascade');
             $table->string('nama_penyakit');
             $table->timestamps();
         });

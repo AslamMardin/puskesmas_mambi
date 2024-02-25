@@ -13,9 +13,17 @@ return new class extends Migration
     {
         Schema::create('rekam_mediks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pasien_id')->constrained();
-            $table->foreignId('poli_id')->constrained();
-            $table->foreignId('penyakit_id')->constrained();
+            // $table->foreignId('pasien_id')->constrained();
+            // $table->foreignId('poli_id')->constrained();
+            // $table->foreignId('penyakit_id')->constrained();
+
+            $table->bigInteger('pasien_id')->unsigned();
+            $table->foreign('pasien_id')->references('id')->on('pasiens')->onDelete('cascade');
+            $table->bigInteger('poli_id')->unsigned();
+            $table->foreign('poli_id')->references('id')->on('polis')->onDelete('cascade');
+            $table->bigInteger('penyakit_id')->unsigned();
+            $table->foreign('penyakit_id')->references('id')->on('penyakits')->onDelete('cascade');
+
             $table->integer('umur');
             $table->date('tanggal_pemeriksaan');
             $table->text('keterangan')->nullable();
