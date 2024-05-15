@@ -3,6 +3,12 @@
 @section('title', 'Data Pasien')
 
 @section('content')
+@section('content')
+@if(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
 <div class="card">
 
     <div class="card-header">

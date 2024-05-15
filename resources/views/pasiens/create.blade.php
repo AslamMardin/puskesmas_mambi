@@ -4,7 +4,12 @@
 @section('title', 'Tambah Pasiens')
     
 @section('content')
-
+@section('content')
+@if(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
 <form action="{{ route('pasien.store') }}" method="POST">
     @csrf
 

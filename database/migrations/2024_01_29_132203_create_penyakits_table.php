@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('poli_id')->unsigned();
             $table->foreign('poli_id')->references('id')->on('polis')->onDelete('cascade');
             $table->string('nama_penyakit');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

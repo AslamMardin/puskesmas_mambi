@@ -65,7 +65,7 @@
                         $daftarPenyakit = [];
                         $daftarPengidap = [];
                     @endphp
-                    @foreach($uniquePenyakit as $rekamMedik)
+                    @foreach($uniquePenyakitSorted  as $rekamMedik)
                     @php
                         array_push($daftarPenyakit, $rekamMedik->penyakit->nama_penyakit);
                         array_push($daftarPengidap, $jumlahPasienPerPenyakit[$rekamMedik->penyakit->nama_penyakit]);
@@ -112,7 +112,7 @@
 @push('scripts')
     <script>
       "use strict";
-
+console.log(@json($daftarPenyakit))
 var statistics_chart = document.getElementById("myChart").getContext('2d');
 
 var myChart = new Chart(statistics_chart, {
@@ -141,14 +141,22 @@ var myChart = new Chart(statistics_chart, {
           drawBorder: false,
         },
         ticks: {
-          stepSize: 100
+         
+          suggestedMin: 0,
+        suggestedMax: Math.max(...@json($daftarPengidap)), // Menggunakan nilai maksimum dari data
+        // stepSize: 100 // Langkah antara setiap label
         }
       }],
       xAxes: [{
         gridLines: {
           color: '#fbfbfb',
           lineWidth: 2
-        }
+        },
+        ticks: {
+        autoSkip: false,
+        maxRotation: 90,
+        minRotation: 0
+      }
       }]
     },
   }

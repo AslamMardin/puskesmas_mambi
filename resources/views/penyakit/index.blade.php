@@ -15,6 +15,12 @@
         </div>
         @endif
 
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
+
       <div class="my-2">
         <a href="{{ route('penyakit.create') }}" class="btn btn-icon icon-left btn-success"><i class="fas fa-plus"></i> Tambah</a>
       </div>
@@ -23,7 +29,8 @@
           <tr>
             <th>#</th>
             <th>Nama Penyakit</th>
-          
+            <th>Alias</th>
+            
             <th>#</th>
            
           </tr>
@@ -33,6 +40,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->nama_penyakit }}</td>
+                <td>{{ $item->keterangan }}</td>
                
                 <td>
                     <a href="{{ route('penyakit.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>

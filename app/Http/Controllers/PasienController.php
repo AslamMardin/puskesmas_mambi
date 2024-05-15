@@ -32,6 +32,11 @@ class PasienController extends Controller
             'date' => 'Kolom :attribute harus berupa tanggal.',
         ]);
 
+        // Memeriksa apakah nama pasien sudah ada sebelumnya
+    if (Pasien::where('nama', $request->nama)->exists()) {
+        return redirect()->route('pasien.create')->withInput()->with('error', 'Nama pasien sudah ada dalam database.');
+    }
+
         Pasien::create($request->all());
 
         return redirect()->route('pasien.index')->with('success', 'Pasien berhasil ditambahkan!');

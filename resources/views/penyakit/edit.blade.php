@@ -30,6 +30,14 @@
         @enderror
     </div>
 
+    <div class="form-group">
+        <label for="keterangan">Alias :</label>
+        <input type="text" name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" value="{{ old('keterangan', $penyakit->keterangan) }}">
+        @error('keterangan')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
 </form>
 @endsection

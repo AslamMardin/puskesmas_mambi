@@ -59,7 +59,7 @@
     
 
     <div class="form-group">
-        <label for="keterangan">Keterangan:</label>
+        <label for="keterangan">Keluhan:</label>
         <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" >{{ old('keterangan', $rekamMedik->keterangan) }}</textarea>
         @error('keterangan')
             <div class="invalid-feedback">{{ $message }}</div>

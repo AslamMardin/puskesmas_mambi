@@ -65,12 +65,16 @@ class DashboardController extends Controller
             $jumlahPasienPerPenyakit[$penyakit] = $jumlahPasien;
         }
 
+        $uniquePenyakitSorted = $uniquePenyakit->sortByDesc(function ($penyakit) use ($jumlahPasienPerPenyakit) {
+            return $jumlahPasienPerPenyakit[$penyakit->penyakit->nama_penyakit];
+        });
+
         // Set lokal ke bahasa Indonesia
         Carbon::setLocale('id');
 
         // Format tanggal dengan hari, tanggal, bulan, dan tahun dalam bahasa Indonesia
         $tanggalSekarang = Carbon::now()->isoFormat('dddd, DD MMMM YYYY');
-        return view('admin.dashboard', compact('data', 'uniquePenyakit', 'jumlahPasienPerPenyakit', 'tanggalSekarang'));
+        return view('admin.dashboard', compact('data','uniquePenyakitSorted', 'uniquePenyakit', 'jumlahPasienPerPenyakit', 'tanggalSekarang'));
     }
 
     public function laporan()

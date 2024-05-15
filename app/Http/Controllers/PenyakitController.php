@@ -59,11 +59,17 @@ class PenyakitController extends Controller
         $request->validate([
             'poli_id' => 'required',
             'nama_penyakit' => 'required',
+            'keterangan' => 'required'
         ], [
             'required' => 'Kolom :attribute wajib diisi.',
             'numeric' => 'Kolom :attribute harus berupa angka.',
             'date' => 'Kolom :attribute harus berupa tanggal.',
         ]);
+
+         // Memeriksa apakah nama penyakit sudah ada sebelumnya
+    if (Penyakit::where('nama_penyakit', $request->nama_penyakit)->exists()) {
+        return redirect()->route('penyakit.create')->withInput()->with('error', 'Nama penyakit sudah ada dalam database.');
+    }
 
         Penyakit::create($request->all());
 
@@ -86,6 +92,7 @@ class PenyakitController extends Controller
         $request->validate([
             'poli_id' => 'required',
             'nama_penyakit' => 'required',
+            'keterangan' => 'required'
         ], [
             'required' => 'Kolom :attribute wajib diisi.',
             'numeric' => 'Kolom :attribute harus berupa angka.',

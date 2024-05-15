@@ -26,7 +26,7 @@
                     <th>Pasien</th>
                     <th>JK</th>
                     <th>Penyakit</th>
-                    <th width="150">Catatan</th>
+                    <th width="150">Keluhan</th>
                     <th>Poli</th>
                     <th>Dokter</th>
                     <th>Aksi</th>
