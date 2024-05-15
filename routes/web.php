@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\PoliController;
@@ -19,11 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home']);
 
-Route::redirect('/', '/login');
+// Route::redirect('/', '/login');
 
 // Rute login
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
