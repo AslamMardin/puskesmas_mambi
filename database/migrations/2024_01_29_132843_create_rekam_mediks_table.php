@@ -17,6 +17,7 @@ return new class extends Migration
             // $table->foreignId('poli_id')->constrained();
             // $table->foreignId('penyakit_id')->constrained();
 
+            $table->string('NO_RM')->nullable();
             $table->bigInteger('pasien_id')->unsigned();
             $table->foreign('pasien_id')->references('id')->on('pasiens')->onDelete('cascade');
             $table->bigInteger('poli_id')->unsigned();
@@ -25,6 +26,12 @@ return new class extends Migration
             $table->foreign('penyakit_id')->references('id')->on('penyakits')->onDelete('cascade');
 
             $table->integer('umur');
+            $table->string('TD')->nullable();
+            $table->string('nadi')->nullable();
+            $table->string('pernapasan')->nullable();
+            $table->string('suhu')->nullable();
+            $table->string('bb')->nullable();
+            $table->string('tb')->nullable();
             $table->date('tanggal_pemeriksaan');
             $table->text('keterangan')->nullable();
             $table->timestamps();

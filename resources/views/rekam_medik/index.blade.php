@@ -22,26 +22,44 @@
             <table class="table" id="table-rekam-medik">
                 <thead>
                 <tr>
+                    <th>NO RM</th>
                     <th>Tanggal</th>
                     <th>Pasien</th>
                     <th>JK</th>
                     <th>Penyakit</th>
                     <th width="150">Keluhan</th>
-                    <th>Poli</th>
-                    <th>Dokter</th>
+                    <th>Suhu</th>
+                    <th>Tekanan</th>
+                    <th>Nadi</th>
+                    <th>Pernapasan</th>
+                    <th>TB</th>
+                    <th>BB</th>
+                    <th>Terapi</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($rekamMediks as $rekamMedik)
                     <tr>
+                        <td>{{ $rekamMedik->no_rm }}</td>
                         <td>{{ $rekamMedik->tanggal_pemeriksaan }}</td>
                         <td>{{ $rekamMedik->pasien->nama }}</td>
-                        <td>{{ $rekamMedik->pasien->jk }}</td>
+                        <td>
+                            @if($rekamMedik->pasien->jk == 'Laki-laki')
+                            L
+                        @elseif($rekamMedik->pasien->jk == 'Perempuan')
+                            P
+                        @endif
+                    </td>
                         <td>{{ $rekamMedik->penyakit->nama_penyakit }}</td>
                         <td>{{ $rekamMedik->keterangan }}</td>
-                        <td>{{ $rekamMedik->poli->nama_poli }}</td>
-                        <td>{{ $rekamMedik->poli->dokter }}</td>
+                        <td>{{ $rekamMedik->suhu }}</td>
+                        <td>{{ $rekamMedik->TD }}</td>
+                        <td>{{ $rekamMedik->nadi }}</td>
+                        <td>{{ $rekamMedik->pernapasan }}</td>
+                        <td>{{ $rekamMedik->tb }}</td>
+                        <td>{{ $rekamMedik->bb }}</td>
+                        <td>{{ $rekamMedik->terapi }}</td>
                         <td>
                             <a href="{{ route('rekam-medik.edit', $rekamMedik->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                             <form id="form-delete-{{ $rekamMedik->id }}" action="{{ route('rekam-medik.destroy', $rekamMedik->id) }}" method="POST" style="display:inline">

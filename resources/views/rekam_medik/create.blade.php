@@ -10,16 +10,7 @@
             <h4>Tambah Rekam Medik</h4>
         </div>
         <div class="card-body">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>Error!</strong> Terdapat masalah pada input data.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            
 
             <form action="{{ route('rekam-medik.store') }}" method="POST">
                 @csrf
@@ -33,7 +24,15 @@
                         </div>
                     </div>
                     @error('pasien_id')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="no_rm">No RM:</label>
+                    <input type="text" class="form-control" id="no_rm" name="no_rm" value="{{ old('no_rm') }}">
+                    @error('no_rm')
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 
@@ -49,7 +48,7 @@
                         @endforeach
                     </select>
                     @error('poli_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -60,7 +59,7 @@
                       
                     </select>
                     @error('penyakit_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -68,7 +67,64 @@
                     <label for="keterangan">Keluhan:</label>
                     <textarea class="form-control" id="keterangan" name="keterangan" rows="3" >{{ old('keterangan') }}</textarea>
                     @error('keterangan')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="TD">Tekanan Darah:</label>
+                    <input type="text" class="form-control" id="TD" name="TD" value="{{ old('TD') }}">
+                    @error('TD')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="nadi">Nadi:</label>
+                    <input type="text" class="form-control" id="nadi" name="nadi" value="{{ old('nadi') }}">
+                    @error('nadi')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="pernapasan">Pernapasan :</label>
+                    <input type="text" class="form-control" id="pernapasan" name="pernapasan" value="{{ old('pernapasan') }}">
+                    @error('pernapasan')
                         <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="suhu">Suhu :</label>
+                    <input type="text" class="form-control" id="suhu" name="suhu" value="{{ old('suhu') }}">
+                    @error('suhu')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="bb">Berat Badan:</label>
+                    <input type="text" class="form-control" id="bb" name="bb" value="{{ old('bb') }}">
+                    @error('bb')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="tb">Tinggi Badan:</label>
+                    <input type="text" class="form-control" id="tb" name="tb" value="{{ old('tb') }}">
+                    @error('tb')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="terapi">Terapi:</label>
+                    <textarea class="form-control" id="terapi" name="terapi" rows="3" >{{ old('terapi') }}</textarea>
+                    @error('terapi')
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 

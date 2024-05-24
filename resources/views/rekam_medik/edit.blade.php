@@ -22,8 +22,10 @@
         @enderror
     </div>
     
-    <input type="hidden" class="form-control" id="pasien_id" name="pasien_id" value="{{old('keterangan', $rekamMedik->pasien->id)}}" readonly>
-    <input type="hidden" class="form-control" id="umur" name="umur" value="{{old('keterangan', $rekamMedik->pasien->umur)}}" readonly>
+    <input type="hidden" class="form-control" id="pasien_id" name="pasien_id" value="{{old('pasien_id', $rekamMedik->pasien->id)}}" readonly>
+    <input type="hidden" class="form-control" id="umur" name="umur" value="{{old('umur', $rekamMedik->pasien->umur)}}" readonly>
+
+    
 
 
     <div class="form-group">
@@ -63,6 +65,70 @@
         <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" >{{ old('keterangan', $rekamMedik->keterangan) }}</textarea>
         @error('keterangan')
             <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="no_rm">No RM:</label>
+        <input type="text" class="form-control" id="no_rm" name="no_rm" value="{{ old('no_rm', $rekamMedik->no_rm) }}">
+        @error('no_rm')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="TD">Tekanan Darah:</label>
+        <input type="text" class="form-control" id="TD" name="TD" value="{{ old('TD', $rekamMedik->TD) }}">
+        @error('TD')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="nadi">Nadi:</label>
+        <input type="text" class="form-control" id="nadi" name="nadi" value="{{ old('nadi', $rekamMedik->nadi) }}">
+        @error('nadi')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    
+    <div class="form-group">
+        <label for="pernapasan">Pernapasan:</label>
+        <input type="text" class="form-control" id="pernapasan" name="pernapasan" value="{{ old('pernapasan', $rekamMedik->pernapasan) }}">
+        @error('pernapasan')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    
+    <div class="form-group">
+        <label for="suhu">Suhu:</label>
+        <input type="text" class="form-control" id="suhu" name="suhu" value="{{ old('suhu', $rekamMedik->suhu) }}">
+        @error('suhu')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    
+    <div class="form-group">
+        <label for="bb">Berat Badan:</label>
+        <input type="text" class="form-control" id="bb" name="bb" value="{{ old('bb', $rekamMedik->bb) }}">
+        @error('bb')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    
+    <div class="form-group">
+        <label for="tb">Tinggi Badan:</label>
+        <input type="text" class="form-control" id="tb" name="tb" value="{{ old('tb', $rekamMedik->tb) }}">
+        @error('tb')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="terapi">Terapi:</label>
+        <textarea class="form-control" id="terapi" name="terapi" rows="3" >{{ old('terapi',  $rekamMedik->terapi) }}</textarea>
+        @error('terapi')
+            <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
 

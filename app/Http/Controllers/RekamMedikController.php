@@ -31,7 +31,7 @@ class RekamMedikController extends Controller
     }
     public function index()
     {
-        $rekamMediks = RekamMedik::with(['penyakit', 'pasien'])->get();
+        $rekamMediks = RekamMedik::with(['penyakit', 'pasien'])->latest('id')->get();
         return view('rekam_medik.index', compact('rekamMediks'));
     }
 
@@ -51,8 +51,18 @@ class RekamMedikController extends Controller
             'poli_id' => 'required',
             'penyakit_id' => 'required',
             'keterangan' => 'required',
+            'no_rm' => 'required',
+            'TD' => 'required',
+            'nadi' => 'required|numeric',
+            'pernapasan' => 'required|numeric',
+            'suhu' => 'required',
+            'bb' => 'required|numeric',
+            'tb' => 'required|numeric',
+            'terapi' => 'required',
+
         ], [
             'required' => 'Kolom :attribute wajib diisi.',
+            'numeric' => 'Kolom :attribute wajib berisi Angka.',
         ]);
 
         $request['tanggal_pemeriksaan'] = now();
@@ -78,17 +88,38 @@ class RekamMedikController extends Controller
 
     public function update(Request $request, RekamMedik $rekamMedik)
     {
-        $request->validate([
-
+        // dd($request->all());
+      $request->validate([
+            
             'keterangan' => 'required',
+            'no_rm' => 'required',
+            'TD' => 'required',
+            'nadi' => 'required',
+            'pernapasan' => 'required',
+            'suhu' => 'required',
+            'bb' => 'required',
+            'tb' => 'required',
+            'terapi' => 'required',
+        ], [
+            'required' => 'Kolom :attribute wajib diisi.',
+            'numeric' => 'Kolom :attribute wajib berisi Angka.',
         ]);
 
-        $rekamMedik->update([
+      $rekamMedik->update([
             'pasien_id' => $request->get('pasien_id'),
             'poli_id' => $request->get('poli_id'),
             'penyakit_id' => $request->get('penyakit_id'),
             'keterangan' => $request->get('keterangan'),
+            'no_rm' => $request->get('no_rm'),
+            'TD' => $request->get('TD'),
+            'nadi' => $request->get('nadi'),
+            'pernapasan' => $request->get('pernapasan'),
+            'suhu' => $request->get('suhu'),
+            'bb' => $request->get('bb'),
+            'tb' => $request->get('tb'),
+            'terapi' => $request->get('terapi'),
         ]);
+
 
         return redirect()->route('rekam-medik.index')->with('success', 'Rekam medik berhasil diperbarui.');
     }
