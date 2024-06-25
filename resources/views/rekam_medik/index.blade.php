@@ -14,9 +14,24 @@
                     {{ session('success') }}
                 </div>
             @endif
-
-            <div class="my-2">
+            <div class="my-2 d-flex justify-content-between">
                 <a href="{{ route('rekam-medik.create') }}" class="btn btn-icon icon-left btn-success"><i class="fas fa-plus"></i> Tambah</a>
+                <form action="{{ route('rekam-medik.index') }}" method="GET" class="d-flex">
+                    <select name="umur" class="form-control">
+                        <option value="">Pilih Umur</option>
+                        <option value="0-10">0-10</option>
+                        <option value="11-20">11-20</option>
+                        <option value="21-30">21-30</option>
+                        <option value="31-40">31-40</option>
+                        <option value="41-50">41-50</option>
+                        <option value="51-60">51-60</option>
+                        <option value="61-70">61-70</option>
+                        <option value="71-80">71-80</option>
+                        <option value="81-90">81-90</option>
+                        <option value="91-100">91-100</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary ml-2">Cari</button>
+                </form>
             </div>
 
             <table class="table" id="table-rekam-medik">
@@ -25,6 +40,7 @@
                     <th>NO RM</th>
                     <th>Tanggal</th>
                     <th>Pasien</th>
+                    <th>Umur</th>
                     <th>JK</th>
                     <th>Penyakit</th>
                     <th width="150">Keluhan</th>
@@ -44,6 +60,7 @@
                         <td>{{ $rekamMedik->no_rm }}</td>
                         <td>{{ $rekamMedik->tanggal_pemeriksaan }}</td>
                         <td>{{ $rekamMedik->pasien->nama }}</td>
+                        <td>{{ $rekamMedik->umur }}</td>
                         <td>
                             @if($rekamMedik->pasien->jk == 'Laki-laki')
                             L

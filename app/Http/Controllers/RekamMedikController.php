@@ -29,9 +29,18 @@ class RekamMedikController extends Controller
         $penyakits = Penyakit::where('poli_id', $poliId)->get();
         return response()->json($penyakits);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $rekamMediks = RekamMedik::with(['penyakit', 'pasien'])->latest('id')->get();
+        $rekamMediks = RekamMedik::with(['penyakit', 'pasien']);
+
+        if ($request->filled('umur')) {
+            $umur = $request->umur;
+            $range = explode('-', $umur);
+            $rekamMediks = $rekamMediks->whereBetween('umur', [$range[0], $range[1]]);
+        }
+    
+        $rekamMediks = $rekamMediks->latest('id')->get();
+    
         return view('rekam_medik.index', compact('rekamMediks'));
     }
 

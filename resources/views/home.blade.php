@@ -14,11 +14,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
         <style>
-           body {
+           /* body {
        background: url('assets/img/bg/pngtree-international-pink-nurse-festival-background-picture-image_1426716.jpg');
        background-size: cover;
        background-position: center center
-        }
+        } */
 
         .marquee {
     overflow: hidden;
@@ -51,91 +51,115 @@
 }
         </style>
     </head>
-    <body class="antialiased">
-     
-        {{-- mulai --}}
-        <div class="row my-1">
-            <div class="col-12">
-                <marquee behavior="scroll" direction="left" style="font-size: 45px; color: red; background-color: yellow;">
-                    SELAMAT DATANG DI PUSKESMAS MAMBI MAMASA!!
-                </marquee>
-            </div>
-        </div>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-12">
-         
-          <div class="card">
-            <div class="card-header">
-                <h4>Penyakit Terbanyak</h4>
-            </div>
-            <div class="card-body">
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <table class="table" id="table-rekam-medik">
-                    <thead>
-                    <tr>
-                        <th>Penyakit</th>
-                        <th>Alias</th>
-                       
-                        <th>Pengidap</th>
-                    </tr>
-                   
-                    </thead>
-                    <tbody>
-                        @php
-                            $daftarPenyakit = [];
-                            $daftarPengidap = [];
-                        @endphp
-                        @foreach($uniquePenyakitSorted  as $rekamMedik)
-                        @php
-                            if($rekamMedik->penyakit->keterangan != ""){
-                                array_push($daftarPenyakit, $rekamMedik->penyakit->keterangan);
-                            }else {
-                                array_push($daftarPenyakit, $rekamMedik->penyakit->nama_penyakit);
 
-                            }
-                            array_push($daftarPengidap, $jumlahPasienPerPenyakit[$rekamMedik->penyakit->nama_penyakit]);
-                        @endphp
-                        <tr>
-                            @if($rekamMedik->penyakit->keterangan != "")
-                            <td>{{$rekamMedik->penyakit->keterangan}}</td>
-                            @else
-                            <td>{{$rekamMedik->penyakit->nama_penyakit}}</td>
-                            @endif
-                            <td>{{$rekamMedik->penyakit->nama_penyakit}}</td>
-                            <td>{{ $jumlahPasienPerPenyakit[$rekamMedik->penyakit->nama_penyakit] }}</td>
-                            
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+    <body class="antialiased">
+
+      <nav class="navbar" style="background-color: #ff2975; color:#fff">
+        <div class="container-fluid">
+          <a class="navbar-brand">SISTEM INFORMASI TREND PENYAKIT</a>
+          <form class="d-flex" role="search">
+            <a href="{{route('login')}}" class="btn btn-dark">Login</a>
+          </form>
         </div>
+      </nav>
+     
+        
+<div class="container-fluid p-3">
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ asset('assets/img/bg/1.jpg') }}" class="d-block w-100" alt="Slide 1" style="height: 500px;">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('assets/img/bg/2.jpg') }}" class="d-block w-100" alt="Slide 2" style="height: 500px;">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('assets/img/bg/3.jpeg') }}" class="d-block w-100" alt="Slide 3" style="height: 500px;">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('assets/img/bg/4.jpeg') }}" class="d-block w-100" alt="Slide 4" style="height: 500px;">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+
+  <div class="row">
+    
+    <div class="col-12 text-center mt-3  p-3 mb-5" style="background-color: rgb(161, 17, 70); color:#fff">
+        <p>Sistem Informasi Trend Penyakit di Puskesmas Mambi adalah platform inovatif yang dirancang untuk memantau, menganalisis, dan melaporkan pola penyakit di wilayah tersebut. Sistem ini memungkinkan tenaga medis dan administrasi untuk mengidentifikasi tren penyakit secara cepat dan akurat, sehingga dapat mengambil langkah preventif dan responsif yang tepat. Dengan integrasi data real-time dan visualisasi yang intuitif, sistem ini membantu meningkatkan kualitas pelayanan kesehatan dan mempercepat pengambilan keputusan dalam penanganan kesehatan masyarakat.</p>
+    </div>
+</div>
+
+
+  <div class="card shadow-md">
+    <div class="card-body">
+          <div class="row">
+
+      
+        <div class="col-lg-5 col-md-5 col-sm-12">
+          <table class="table" id="table-rekam-medik">
+            <thead>
+            <tr>
+                <th>Penyakit</th>
+                <th>Alias</th>
+               
+                <th>Pengidap</th>
+            </tr>
+           
+            </thead>
+            <tbody>
+                @php
+                    $daftarPenyakit = [];
+                    $daftarPengidap = [];
+                @endphp
+                @foreach($uniquePenyakitSorted  as $rekamMedik)
+                @php
+                    if($rekamMedik->penyakit->keterangan != ""){
+                        array_push($daftarPenyakit, $rekamMedik->penyakit->keterangan);
+                    }else {
+                        array_push($daftarPenyakit, $rekamMedik->penyakit->nama_penyakit);
+
+                    }
+                    array_push($daftarPengidap, $jumlahPasienPerPenyakit[$rekamMedik->penyakit->nama_penyakit]);
+                @endphp
+                <tr>
+                    @if($rekamMedik->penyakit->keterangan != "")
+                    <td>{{$rekamMedik->penyakit->keterangan}}</td>
+                    @else
+                    <td>{{$rekamMedik->penyakit->nama_penyakit}}</td>
+                    @endif
+                    <td>{{$rekamMedik->penyakit->nama_penyakit}}</td>
+                    <td>{{ $jumlahPasienPerPenyakit[$rekamMedik->penyakit->nama_penyakit] }}</td>
+                    
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
         </div>
         
         <div class="col-lg-7 col-md-7 col-sm-12">
           {{-- cart --}}
-          <div class="card">
-            <div class="card-header">
+         
               <h4>{{$tanggalSekarang}}</h4>
-              <div class="card-header-action">
-               
-              </div>
-            </div>
-            <div class="card-body">
               <canvas id="myChart" height="182"></canvas>
             
-            </div>
-          </div>
-    
+      
           {{-- // --}}
         
         </div>
+
       </div>
+      </div>
+    </div>
     
     
     
@@ -144,9 +168,11 @@
 
 </div>
 
-<p class="bottom-right"><a href="{{route('login')}}">Login</a></p>
+
        </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 <script src="{{asset('assets/modules/chart.min.js')}}"></script>
 <script>
     "use strict";
